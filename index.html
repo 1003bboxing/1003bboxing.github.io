@@ -1,0 +1,99 @@
+<html>
+<header>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="2021ChristmasBox.js"></script>
+<script src="2022NewYearsBox.js"></script>
+<script>
+    var boxObj = NewYearsBox2022
+    let get = {}
+    let clicked = 0
+    var randomArray=[];
+    var totalWeight = 0
+    
+    function init(){
+        let newItemsWeight = boxObj.itemsWeight.map((i) => i * 1000000)
+        totalWeight=eval(newItemsWeight.join("+"));
+        // 100
+        // 1000000
+        for(var i=0; i<boxObj.items.length; i++)
+        {
+            for(var j=0; j<newItemsWeight[i]; j++)
+            {
+                randomArray.push(i);
+            }
+        }
+    }
+    
+    function weightedRandom(){        
+        var randomNumber=Math.floor(Math.random()*totalWeight);
+        let treasure = boxObj.items[randomArray[randomNumber]]
+        
+        if(get[treasure]){
+            get[treasure] ++
+        }else{
+            get[treasure] = 1
+        }
+        clicked ++
+        document.getElementById("count").innerHTML = "目前抽了" + clicked + "次，花了" + Math.ceil(clicked * boxObj.price) + "元"
+        document.getElementById("board").innerHTML = Object.entries(get).map(([key, value]) => {
+            let rate = boxObj.itemsWeight[boxObj.items.findIndex(i => i === key)]
+            let span = "<span>"
+            if(rate < 0.01){
+                span = "<span style='color: red'>"
+            }
+            //return `<div>${span}${key}(${rate}%): ${value}-------------${(value/clicked)}</span></div>`
+            return `<div>${span}${key}: ${value}</span></div>`
+        }).join("")
+    }
+    
+    function handleClick() {
+        weightedRandom()
+        return
+        let timeoutID = window.setInterval( () => {
+            weightedRandom()
+            if(get["五階龍麟武器祕寶"]){
+                window.clearTimeout(timeoutID);
+            }
+        }  , 10);
+    }
+
+    function handleChangeBox(){
+        let box = document.getElementById("box").value
+        if(box === "NewYearsBox2022"){
+            boxObj = NewYearsBox2022
+        }
+        if(box === "ChristmasBox2021"){
+            boxObj = ChristmasBox2021
+        }
+        console.log(boxObj)
+        document.getElementById("board").innerHTML = ""
+        get = {}
+        clicked = 0
+        randomArray=[];
+        totalWeight = 0
+        init()
+    }
+</script>
+</header>
+<body style="background: black; color: white">
+<select id="box" onchange="handleChangeBox()" value="NewYearsBox2022">
+    <option value="NewYearsBox2022">2022新年寶箱</option>
+    <option value="ChristmasBox2021">2021聖誕寶箱</option>
+</select>
+<button onclick="handleClick()">抽了啦</button>
+<div id="count"></div>
+<hr class="dashed">
+<div id="board"></div>
+<script>
+    init()
+    document.addEventListener('keydown', (event) => {
+          var name = event.key;
+          var code = event.code;
+          if(name === "F7"){
+            handleClick()
+          }
+    }, false);
+</script>
+</body>
+</html>
