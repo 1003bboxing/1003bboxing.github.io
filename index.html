@@ -1,13 +1,13 @@
 <html>
 <header>
-<title>搶錢寶箱模擬器</title>
-<meta name="description" content="手癢賭癮犯了，點一點就好，大家一起來守護年終獎金">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>搶錢寶箱模擬器</title>
 <script src="2021ChristmasBox.js"></script>
 <script src="2022NewYearsBox.js"></script>
+<script src="2022ValentineBox.js"></script>
 <script>
-    var boxObj = NewYearsBox2022
+    var boxObj = ValentineBox2022
     let get = {}
     let clicked = 0
     var randomArray=[];
@@ -68,6 +68,9 @@
         if(box === "ChristmasBox2021"){
             boxObj = ChristmasBox2021
         }
+        if(box === "ValentineBox2022"){
+            boxObj = ValentineBox2022
+        }
         console.log(boxObj)
         document.getElementById("board").innerHTML = ""
         get = {}
@@ -78,8 +81,9 @@
     }
 </script>
 </header>
-<body style="background: black; color: white; touch-action: manipulation;">
-<select id="box" onchange="handleChangeBox()" value="NewYearsBox2022">
+<body style="background: black; color: white">
+<select id="box" onchange="handleChangeBox()" value="ValentineBox2022">
+    <option value="ValentineBox2022">2022情人節寶箱</option>
     <option value="NewYearsBox2022">2022新年寶箱</option>
     <option value="ChristmasBox2021">2021聖誕寶箱</option>
 </select>
