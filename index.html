@@ -8,6 +8,7 @@
 <script src="2022NewYearsBox.js"></script>
 <script src="2022ValentineBox.js"></script>
 <script src="2022MotherBox.js"></script>
+<script src="2022LunarDay.js"></script>
 <script>
     var boxObj = BoxYears21
     let get = {}
@@ -64,20 +65,19 @@
 
     function handleChangeBox(){
         let box = document.getElementById("box").value
-        if(box === "NewYearsBox2022"){
-            boxObj = NewYearsBox2022
-        }
-        if(box === "ChristmasBox2021"){
-            boxObj = ChristmasBox2021
-        }
-        if(box === "ValentineBox2022"){
-            boxObj = ValentineBox2022
-        }
-        if(box === "2022MotherBox"){
-            boxObj = MotherBox2022
-        }
-        if(box === "BoxYears21"){
-            boxObj = BoxYears21
+        switch(box){
+            case "NewYearsBox2022":
+                boxObj = NewYearsBox2022; break;
+            case "ChristmasBox2021":
+                boxObj = ChristmasBox2021; break;
+            case "ValentineBox2022":
+                boxObj = ValentineBox2022; break;
+            case "MotherBox2022":
+                boxObj = MotherBox2022; break;
+            case "BoxYears21":
+                boxObj = BoxYears21; break;
+            case "LunarDay2022":
+                boxObj = LunarDay2022; break;
         }
         console.log(boxObj)
         document.getElementById("board").innerHTML = ""
@@ -90,9 +90,10 @@
 </script>
 </header>
 <body style="background: black; color: white">
-<select id="box" onchange="handleChangeBox()" value="ValentineBox2022">
+<select id="box" onchange="handleChangeBox()" value="LunarDay2022">
+    <option value="BoxYears21">2022中秋寶箱(活動)</option>
     <option value="BoxYears21">21週年寶箱(活動)</option>
-    <option value="2022MotherBox">2022溫馨寶箱</option>
+    <option value="MotherBox2022">2022溫馨寶箱</option>
     <option value="ValentineBox2022">2022情人節寶箱</option>
     <option value="NewYearsBox2022">2022新年寶箱</option>
     <option value="ChristmasBox2021">2021聖誕寶箱</option>
