@@ -10,8 +10,9 @@
 <script src="2022MotherBox.js"></script>
 <script src="2022LunarDay.js"></script>
 <script src="ValentineBox2023.js"></script>
+<script src="2023LunarDay.js"></script>
 <script>
-    var boxObj = ValentineBox2023
+    var boxObj = LunarDay2023
     let get = {}
     let clicked = 0
     var randomArray=[];
@@ -81,6 +82,8 @@
                 boxObj = LunarDay2022; break;
             case "ValentineBox2023":
                 boxObj = ValentineBox2023; break;
+            case "2023LunarDay":
+                boxObj = LunarDay2023; break;
                 
         }
         console.log(boxObj)
@@ -94,9 +97,10 @@
 </script>
 </header>
 <body style="background: black; color: white">
-<select id="box" onchange="handleChangeBox()" value="ValentineBox2023">
+<select id="box" onchange="handleChangeBox()" value="LunarDay2023">
+    <option value="LunarDay2023">2023中秋寶箱(活動)</option>
     <option value="ValentineBox2023">2023七夕寶箱</option>
-    <option value="BoxYears21">2022中秋寶箱(活動)</option>
+    <option value="LunarDay2022">2022中秋寶箱(活動)</option>
     <option value="BoxYears21">21週年寶箱(活動)</option>
     <option value="MotherBox2022">2022溫馨寶箱</option>
     <option value="ValentineBox2022">2022情人節寶箱</option>
